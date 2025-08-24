@@ -1,31 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nasim Rana — Software Engineer</title>
+  <meta name="description" content="Full‑stack Software Engineer (Laravel + Vue.js). Building scalable ERP & fintech systems. Based in Dhaka, Bangladesh." />
+  <meta property="og:title" content="Nasim Rana — Software Engineer" />
+  <meta property="og:description" content="Full‑stack Software Engineer (Laravel + Vue.js). Building scalable ERP & fintech systems. Based in Dhaka, Bangladesh." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/nasimrana1725/nasimrana1725/main/cover.jpg" />
+  <link rel="icon" href="https://raw.githubusercontent.com/nasimrana1725/nasimrana1725/main/cover.jpg" />
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111317;
+      --text: #e6e6e6;
+      --muted: #b8b8b8;
+      --brand: #7c3aed; /* purple */
+      --brand-2: #22c55e; /* green accent */
+      --card: #151821;
+      --border: #20242f;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 18px 0 10px; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,12,16,.9) 70%, rgba(11,12,16,0)); backdrop-filter: blur(8px); z-index: 50; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img { width:48px; height:48px; border-radius:50%; border:1px solid var(--border); object-fit: cover; }
+    .brand .title { font-weight:700; letter-spacing:.2px; }
+    nav a { margin-left: 18px; font-weight:600; color:var(--muted); }
+    nav a:hover { color: var(--text); }
+    .btn { display:inline-flex; align-items:center; gap:8px; background: var(--brand); color:white; border:none; padding:10px 14px; border-radius:12px; box-shadow: var(--shadow); font-weight:700; cursor:pointer; }
+    .btn.ghost { background:transparent; border:1px solid var(--border); color:var(--text); box-shadow:none; }
+
+    /* Hero */
+    .hero { display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center; padding: 48px 0 16px; }
+    .hero h1 { font-size: clamp(28px, 4vw, 46px); line-height:1.15; margin:0 0 12px; }
+    .hero p { color:var(--muted); margin:0 0 22px; }
+    .hero-card { background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(34,197,94,.08)); border:1px solid var(--border); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow); }
+    .hero .badges { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 0; }
+    .badge { border:1px solid var(--border); padding:6px 10px; border-radius:999px; font-size:13px; color:var(--muted); }
+
+    /* Sections */
+    section { margin: 56px 0; }
+    h2 { font-size: clamp(22px, 3vw, 30px); margin:0 0 14px; }
+    .sub { color:var(--muted); margin:0 0 22px; }
+
+    /* Grid cards */
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .card { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow); display:flex; flex-direction:column; }
+    .card h3 { margin:0 0 8px; font-size:18px; }
+    .card p { color:var(--muted); margin:0 0 16px; }
+    .card .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+    .tag { font-size:12px; border:1px solid var(--border); color:var(--muted); padding:4px 8px; border-radius:999px; }
+    .card a.more { margin-top:14px; font-weight:700; color:var(--brand-2); }
+
+    /* Timeline */
+    .timeline { position:relative; padding-left:24px; }
+    .timeline::before { content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:var(--border); }
+    .item { position:relative; margin: 14px 0 22px; }
+    .item::before { content:""; position:absolute; left:-2px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(124,58,237,.2); }
+    .item .when { color:var(--muted); font-size:13px; }
+
+    /* Footer */
+    footer { margin: 56px 0 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:var(--muted); border-top:1px dashed var(--border); padding-top:18px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      nav { display:none; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="introduction">
-            <h2>Hello, I'm [Your Name]</h2>
-            <p>Welcome to my portfolio. Here you can find my projects and more about me.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
-    </footer>
+  <header class="wrap">
+    <div class="brand">
+      <img src="https://avatars.githubusercontent.com/u/52950856?v=4" alt="Nasim Rana avatar" />
+      <div class="title">Nasim Rana</div>
+    </div>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div>
+      <a class="btn ghost" href="https://github.com/nasimrana1725" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="btn" href="mailto:nasimrana69@gmail.com">Hire Me</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Full‑Stack Software Engineer — Laravel & Vue.js</h1>
+        <p>Building scalable ERP and fintech systems with a focus on performance, data integrity, and clean architecture. Based in Dhaka, Bangladesh. Open to collaborations in system design & data‑driven apps.</p>
+        <div>
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn ghost" href="https://nasimrana.xyz" target="_blank" rel="noreferrer">Portfolio Site</a>
+        </div>
+        <div class="badges">
+          <span class="badge">Laravel</span>
+          <span class="badge">Vue 3</span>
+          <span class="badge">MySQL / MongoDB</span>
+          <span class="badge">REST APIs</span>
+          <span class="badge">Docker</span>
+          <span class="badge">CI/CD</span>
+          <span class="badge">AWS</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <strong>Now</strong>
+        <ul>
+          <li>Leading a 5‑member team to build an ERP‑like system for Apple’s business ops (modules: Sites, Stores, Programs).</li>
+          <li>Improving fintech app for <em>TMSS</em>: security, fast reporting, and large‑dataset performance.</li>
+          <li>Learning System Design & AWS infra; practicing microservices vs modular monolith.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <p class="sub">A few repos that represent what I build and how I think about architecture.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>ERP — Apple Business</h3>
+          <p>ERP‑like platform with Sites, Projects, Stores, and Programs modules. Focus on RBAC, audit logs, and reporting.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">Vue 3</span><span class="tag">MySQL</span><span class="tag">RBAC</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725/ERP-Apple-Business" target="_blank" rel="noreferrer">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Order API (Repository Pattern)</h3>
+          <p>Clean service layer, repository pattern, request validation, feature tests, and OpenAPI docs for order workflows.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">REST</span><span class="tag">Testing</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725/order-api-repository-pattern-With-Laravel" target="_blank" rel="noreferrer">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Chitrangoda E‑Commerce</h3>
+          <p>Fashion brand storefront + admin. Variants, inventory, and analytics. Separate API backend & Vue SPA frontend.</p>
+          <div class="tags">
+            <span class="tag">Laravel API</span><span class="tag">Vue SPA</span><span class="tag">Stripe</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725/ChitrangodaECommers" target="_blank" rel="noreferrer">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Laravel + Vue To‑Do</h3>
+          <p>Auth, CRUD, Sanctum, REST API, and testing. Demonstrates clean separation of API and frontend.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">Vue 3</span><span class="tag">Sanctum</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725/Laravel-Vue-TodoApp" target="_blank" rel="noreferrer">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Bagisto E‑Commerce</h3>
+          <p>Customization of Bagisto for multi‑vendor catalog and order workflows with performance tweaks.</p>
+          <div class="tags">
+            <span class="tag">Bagisto</span><span class="tag">Laravel</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725/E-Commerce-with-Bagisto" target="_blank" rel="noreferrer">View repo →</a>
+        </article>
+        <article class="card">
+          <h3>Analytics & GA4 Scripts</h3>
+          <p>GA4 Data API experiments, simple dashboards, and scripts for marketing attribution and funnels.</p>
+          <div class="tags">
+            <span class="tag">GA4 API</span><span class="tag">Node/PHP</span>
+          </div>
+          <a class="more" href="https://github.com/nasimrana1725" target="_blank" rel="noreferrer">More on GitHub →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="item">
+          <div class="when">2023 — Present</div>
+          <strong>Software Engineer (Full‑Stack) — ERP & Fintech</strong>
+          <div>Team lead for a 5‑member group building ERP‑like systems; contributed to nationwide micro‑finance app (TMSS) with strong security & large‑scale reporting.</div>
+        </div>
+        <div class="item">
+          <div class="when">2021 — 2023</div>
+          <strong>Assistant Software Engineer — TMSS ICT Limited</strong>
+          <div>Worked across MIS & AIS modules: member creation, loan/savings, daily transactions, ledger sheets, balance sheets.</div>
+        </div>
+        <div class="item">
+          <div class="when">2017 — 2021</div>
+          <strong>BSc in Software Engineering — Daffodil International University</strong>
+          <div>Graduated with strong focus on web engineering and databases. Active in open‑source learning.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="sub">Have an idea or role in mind? I’d love to hear from you.</p>
+      <p>
+        <a class="btn" href="mailto:nasimrana69@gmail.com">Email Me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/nasim1725/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn ghost" href="https://join.skype.com/invite/kMn3ZnbRcdFS" target="_blank" rel="noreferrer">Skype</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div>© <span id="year"></span> Nasim Rana • Built with HTML + CSS • Hosted on GitHub Pages</div>
+    <div>
+      <a href="https://github.com/nasimrana1725" target="_blank" rel="noreferrer">@nasimrana1725</a>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // (Optional) Simple project filter hook for future expansion
+    // Example: you could fetch a projects.json and render here instead of static HTML
+  </script>
 </body>
 </html>
